@@ -113,14 +113,14 @@ install_XrayR() {
             exit 1
         fi
         echo -e "Đã phát hiện phiên bản mới nhất của XrayR：${last_version}，bắt đầu cài đặt"
-        wget -q -N --no-check-certificate -O /usr/local/XrayR/XrayR-linux.zip https://github.com/maissbacku/Dozanet/releases/download/${last_version}/XrayR-linux-${arch}.zip
+        wget -q -N --no-check-certificate -O /usr/local/XrayR/XrayR-linux.zip https://github.com/maissbacku/Dozanet/releases/download/${last_version}/XrayR-linux-64.zip
         if [[ $? -ne 0 ]]; then
             echo -e "${red}Không tải xuống được XrayR, hãy đảm bảo máy chủ của bạn có thể tải xuống tệp Github${plain}"
             exit 1
         fi
     else
         last_version=$1
-        url="https://github.com/maissbacku/Dozanet/releases/download/${last_version}/XrayR-linux-${arch}.zip"
+        url="https://github.com/maissbacku/Dozanet/releases/download/${last_version}/XrayR-linux-64.zip"
         echo -e "Bắt đầu cài đặt XrayR v$1"
         wget -q -N --no-check-certificate -O /usr/local/XrayR/XrayR-linux.zip ${url}
         if [[ $? -ne 0 ]]; then
