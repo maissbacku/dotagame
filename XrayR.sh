@@ -80,7 +80,7 @@ before_show_menu() {
 }
 
 install() {
-    bash <(curl -Ls https://datathaga.com/xray/install.sh)
+    bash <(curl -Ls https://raw.githubusercontent.com/maissbacku/dotagame/main/install.sh)
     if [[ $? == 0 ]]; then
         if [[ $# == 0 ]]; then
             start
