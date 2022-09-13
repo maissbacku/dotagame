@@ -367,6 +367,8 @@ generate_config_file() {
             4 ) NodeType="Shadowsocks-Plugin" ;;
             * ) NodeType="V2ray" ;;
         esac
+        if [[ $NodeType =~ "2"|"Trojan" ]]; then
+        read -rp "Vui lòng nhập domain Trojan [443]：" DomainPort
         read -rp "Tốc độ giới hạn trên server:" SpeLimit
         read -rp "Giới hạn số người dùng:" UserLimit
         cd /etc/XrayR
@@ -420,9 +422,9 @@ Nodes:
           ProxyProtocolVer: 0 # Send PROXY protocol version, 0 for dsable
       CertConfig:
         CertMode: dns # Option about how to get certificate: none, file, http, dns. Choose "none" will forcedly disable the tls config.
-        CertDomain: "node1.test.com" # Domain to cert
-        CertFile: /etc/XrayR/cert/node1.test.com.cert # Provided if the CertMode is file
-        KeyFile: /etc/XrayR/cert/node1.test.com.key
+        CertDomain: "$DomainPort" # Domain to cert
+        CertFile: /etc/XrayR/cert/$DomainPort.cert # Provided if the CertMode is file
+        KeyFile: /etc/XrayR/cert/$DomainPort.key
         Provider: alidns # DNS cert provider, Get the full support list here: https://go-acme.github.io/lego/dns/
         Email: test@me.com
         DNSEnv: # DNS ENV option used by DNS provider
