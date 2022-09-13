@@ -345,14 +345,6 @@ show_XrayR_version() {
 }
 
 generate_config_file() {
-    echo -e "${yellow}Trình hướng dẫn tạo hồ sơ XrayR${plain}"
-    echo -e "${red}Xin vui lòng đọc các ghi chú sau：${plain}"
-    echo -e "${red}1. Tính năng này hiện đang ở phiên bản beta ${plain}"
-    echo -e "${red}2. Tệp cấu hình đã tạo sẽ được lưu vào /etc/XrayR/config.yml${plain}"
-    echo -e "${red}3. Tệp cấu hình gốc sẽ được lưu vào /etc/XrayR/config.yml.bak${plain}"
-    echo -e "${red}4. TLS hiện không được hỗ trợ ${plain}"
-    read -rp "Có tiếp tục tạo tệp cấu hình không？(y/n)" generate_config_file_continue
-    if [[ $generate_config_file_continue =~ "y"|"Y" ]]; then
         read -rp "Vui lòng nhập một nút Node ID:" NodeID
         echo -e "${yellow}Vui lòng chọn một giao thức truyền tải nút, nếu không được liệt kê thì nó không được hỗ trợ：${plain}"
         echo -e "${green}1. V2ray ${plain}"
@@ -368,7 +360,7 @@ generate_config_file() {
             * ) NodeType="V2ray" ;;
         esac
         if [[ $NodeType =~ "2"|"Trojan" ]]; then
-        read -rp "Vui lòng nhập domain Trojan [443]：" DomainPort
+            read -rp "Vui lòng nhập domain Trojan [443]：" DomainPort
         read -rp "Tốc độ giới hạn trên server:" SpeLimit
         read -rp "Giới hạn số người dùng:" UserLimit
         cd /etc/XrayR
