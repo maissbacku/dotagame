@@ -107,24 +107,24 @@ install_XrayR() {
     cd /usr/local/XrayR/
 
     if  [ $# == 0 ] ;then
-        last_version=$(curl -Ls "https://api.github.com/repos/maissbacku/Dozanet/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+        last_version=$(curl -Ls "https://api.github.com/repos/missovo/XrayR/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
         if [[ ! -n "$last_version" ]]; then
-            echo -e "${red}Không thể phát hiện phiên bản XrayR, có thể đã vượt quá giới hạn Github API, vui lòng thử lại sau hoặc chỉ định phiên bản XrayR để cài đặt theo cách thủ công${plain}"
+            echo -e "${red}检测 XrayR 版本失败，可能是超出 Github API 限制，请稍后再试，或手动指定 XrayR 版本安装${plain}"
             exit 1
         fi
-        echo -e "Đã phát hiện phiên bản mới nhất của XrayR：${last_version}，bắt đầu cài đặt"
-        wget -q -N --no-check-certificate -O /usr/local/XrayR/XrayR-linux.zip https://github.com/maissbacku/Dozanet/releases/download/${last_version}/XrayR-linux-64.zip
+        echo -e "检测到 XrayR 最新版本：${last_version}，开始安装"
+        wget -q -N --no-check-certificate -O /usr/local/XrayR/XrayR-linux.zip https://github.com/missovo/XrayR/releases/download/${last_version}/XrayR-linux-${arch}.zip
         if [[ $? -ne 0 ]]; then
-            echo -e "${red}Không tải xuống được XrayR, hãy đảm bảo máy chủ của bạn có thể tải xuống tệp Github${plain}"
+            echo -e "${red}下载 XrayR 失败，请确保你的服务器能够下载 Github 的文件${plain}"
             exit 1
         fi
     else
         last_version=$1
-        url="https://github.com/maissbacku/Dozanet/releases/download/${last_version}/XrayR-linux-64.zip"
-        echo -e "Bắt đầu cài đặt XrayR v$1"
+        url="https://github.com/missovo/XrayR/releases/download/${last_version}/XrayR-linux-${arch}.zip"
+        echo -e "开始安装 XrayR v$1"
         wget -q -N --no-check-certificate -O /usr/local/XrayR/XrayR-linux.zip ${url}
         if [[ $? -ne 0 ]]; then
-            echo -e "${red}Tải xuống XrayR v$1 không thành công, hãy đảm bảo rằng phiên bản này tồn tại${plain}"
+            echo -e "${red}下载 XrayR v$1 失败，请确保此版本存在${plain}"
             exit 1
         fi
     fi
@@ -134,20 +134,20 @@ install_XrayR() {
     chmod +x XrayR
     mkdir /etc/XrayR/ -p
     rm /etc/systemd/system/XrayR.service -f
-    file="https://github.com/maissbacku/dotagame/blob/main/XrayR.service"
+    file="https://github.com/missovo/XrayR-script/raw/main/XrayR.service"
     wget -q -N --no-check-certificate -O /etc/systemd/system/XrayR.service ${file}
     #cp -f XrayR.service /etc/systemd/system/
     systemctl daemon-reload
     systemctl stop XrayR
     systemctl enable XrayR
-    echo -e "${green}XrayR ${last_version}${plain} Quá trình cài đặt hoàn tất, nó đã được thiết lập để bắt đầu tự động"
+    echo -e "${green}XrayR ${last_version}${plain} 安装完成，已设置开机自启"
     cp geoip.dat /etc/XrayR/
     cp geosite.dat /etc/XrayR/ 
 
     if [[ ! -f /etc/XrayR/config.yml ]]; then
         cp config.yml /etc/XrayR/
         echo -e ""
-        echo -e "Để cài đặt mới, vui lòng tham khảo hướng dẫn trước: https://github.com/XrayR-project/XrayR, cấu hình nội dung cần thiết"
+        echo -e "全新安装，请先参看教程：https://github.com/XrayR-project/XrayR，配置必要的内容"
     else
         systemctl start XrayR
         sleep 2
@@ -156,7 +156,7 @@ install_XrayR() {
         if [[ $? == 0 ]]; then
             echo -e "${green}XrayR 重启成功${plain}"
         else
-            echo -e "${red}XrayR có thể không khởi động được. Vui lòng sử dụng nhật ký XrayR để kiểm tra thông tin nhật ký sau. Nếu không khởi động được, định dạng cấu hình có thể đã bị thay đổi. Vui lòng truy cập wiki để kiểm tra: https://github.com/XrayR-project / XrayR / wiki${plain}"
+            echo -e "${red}XrayR 可能启动失败，请稍后使用 XrayR log 查看日志信息，若无法启动，则可能更改了配置格式，请前往 wiki 查看：https://github.com/XrayR-project/XrayR/wiki${plain}"
         fi
     fi
 
@@ -182,26 +182,26 @@ install_XrayR() {
     cd $cur_dir
     rm -f install.sh
     echo -e ""
-    echo "XrayR management script usage (compatible with xrayr execution, case insensitive): "
-     echo "------------------------------------------"
-     echo "XrayR - show admin menu (more functions)"
-     echo "XrayR start - start XrayR"
-     echo "XrayR stop - stop XrayR"
-     echo "XrayR restart - restart XrayR"
-     echo "XrayR status - view XrayR status"
-     echo "XrayR enable - Set XrayR to auto-enable"
-     echo "XrayR disable - disable XrayR auto-start"
-     echo "XrayR log - view XrayR log"
-     echo "XrayR generate - generate XrayR configuration file"
-     echo "XrayR update - update XrayR"
-     echo "XrayR update x.x.x - update the specified version of XrayR"
-     echo "XrayR install - install XrayR"
-     echo "XrayR uninstall - uninstall XrayR"
-     echo "XrayR version - view XrayR version"
+    echo "XrayR 管理脚本使用方法 (兼容使用xrayr执行，大小写不敏感): "
+    echo "------------------------------------------"
+    echo "XrayR              - 显示管理菜单 (功能更多)"
+    echo "XrayR start        - 启动 XrayR"
+    echo "XrayR stop         - 停止 XrayR"
+    echo "XrayR restart      - 重启 XrayR"
+    echo "XrayR status       - 查看 XrayR 状态"
+    echo "XrayR enable       - 设置 XrayR 开机自启"
+    echo "XrayR disable      - 取消 XrayR 开机自启"
+    echo "XrayR log          - 查看 XrayR 日志"
+    echo "XrayR generate     - 生成 XrayR 配置文件"
+    echo "XrayR update       - 更新 XrayR"
+    echo "XrayR update x.x.x - 更新 XrayR 指定版本"
+    echo "XrayR install      - 安装 XrayR"
+    echo "XrayR uninstall    - 卸载 XrayR"
+    echo "XrayR version      - 查看 XrayR 版本"
     echo "------------------------------------------"
 }
 
-echo -e "${green}start installation ${plain}"
+echo -e "${green}开始安装${plain}"
 install_base
 install_acme
 install_XrayR $1
