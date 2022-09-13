@@ -417,8 +417,8 @@ Nodes:
         CertDomain: "$DomainPort" # Domain to cert
         CertFile: /etc/XrayR/cert/$DomainPort.cert # Provided if the CertMode is file
         KeyFile: /etc/XrayR/cert/$DomainPort.key
-        Provider: alidns # DNS cert provider, Get the full support list here: https://go-acme.github.io/lego/dns/
-        Email: test@me.com
+        Provider: cloudflare # DNS cert provider, Get the full support list here: https://go-acme.github.io/lego/dns/
+        Email: phanhaine@gmail.com
         DNSEnv: # DNS ENV option used by DNS provider
           CLOUDFLARE_EMAIL: phanhaine@gmail.com
           CLOUDFLARE_API_KEY: 5d0fdee9b8a3d734928f25b92148a766d5617
