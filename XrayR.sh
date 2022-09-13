@@ -96,7 +96,7 @@ update() {
     else
         version=$2
     fi
-    bash <(curl -Ls https://datathaga.com/xray/install.sh) $version
+    bash <(curl -Ls https://raw.githubusercontent.com/maissbacku/dotagame/main/install.sh) $version
     if [[ $? == 0 ]]; then
         echo -e "${green}更新完成，已自动重启 XrayR，请使用 XrayR log 查看运行日志${plain}"
         exit
@@ -249,7 +249,7 @@ install_bbr() {
 }
 
 update_shell() {
-    wget -O /usr/bin/XrayR -N --no-check-certificate https://datathaga.com/xray/XrayR.sh
+    wget -O /usr/bin/XrayR -N --no-check-certificate https://raw.githubusercontent.com/maissbacku/dotagame/main/XrayR.sh
     if [[ $? != 0 ]]; then
         echo ""
         echo -e "${red}下载脚本失败，请检查本机能否连接 Github${plain}"
