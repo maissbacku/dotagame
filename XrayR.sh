@@ -349,8 +349,7 @@ generate_config_file() {
         echo -e "${green}1. V2ray ${plain}"
         echo -e "${green}2. Trojan ${plain}"
         echo -e "${green}3. Shadowsocks ${plain}"
-        echo -e "${green}4. V2ray + Trojan ${plain}"
-        read -rp "Vui lòng nhập định dạng Node [1-4，mặc định 1]：" NodeType
+        echo -e "${green}4. V2raytrojan ${plain}"
         case "$NodeType" in
             1 ) NodeType="V2ray" ;;
             2 ) NodeType="Trojan" ;;
@@ -358,6 +357,7 @@ generate_config_file() {
             4 ) NodeType="V2raytrojan" ;;
             * ) NodeType="V2ray" ;;
         esac
+        read -rp "Vui lòng nhập định dạng Node [1-4，mặc định 1]：" NodeType
         if [[ $NodeType =~ "4"|"V2raytrojan" ]]; then
             read -rp "Nhập ID Node VMESS: " NodeVmess
             read -rp "Nhập ID Node TROJAN: " NodeTrojan
