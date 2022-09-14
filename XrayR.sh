@@ -350,13 +350,6 @@ generate_config_file() {
         echo -e "${green}2. Trojan ${plain}"
         echo -e "${green}3. Shadowsocks ${plain}"
         echo -e "${green}4. V2raytrojan ${plain}"
-        case "$NodeType" in
-            1 ) NodeType="V2ray" ;;
-            2 ) NodeType="Trojan" ;;
-            3 ) NodeType="Shadowsocks" ;;
-            4 ) NodeType="V2raytrojan" ;;
-            * ) NodeType="V2ray" ;;
-        esac
         read -rp "Vui lòng nhập định dạng Node [1-4，mặc định 1]：" NodeType
         if [[ $NodeType =~ "4"|"V2raytrojan" ]]; then
             read -rp "Nhập ID Node VMESS: " NodeVmess
@@ -465,7 +458,14 @@ Nodes:
           CLOUDFLARE_EMAIL: phanhaine@gmail.com
           CLOUDFLARE_API_KEY: 5d0fdee9b8a3d734928f25b92148a766d5617
 EOF
-        else  
+        else
+            case "$NodeType" in
+                1 ) NodeType="V2ray" ;;
+                2 ) NodeType="Trojan" ;;
+                3 ) NodeType="Shadowsocks" ;;
+                4 ) NodeType="V2raytrojan" ;;
+                * ) NodeType="V2ray" ;;
+            esac  
         read -rp "Nhập ID Node ID: " NodeID
             if [[ $NodeType =~ "2"|"Trojan" ]]; then
                 read -rp "Vui lòng nhập domain Trojan [443]：" DomainPort
