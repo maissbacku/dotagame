@@ -358,7 +358,7 @@ generate_config_file() {
             4 ) NodeType="V2raytrojan" ;;
             * ) NodeType="V2ray" ;;
         esac
-        if [[ $NodeType == 4 ]]; then
+        if [ "$NodeType" == "4" ]; then
             read -rp "Nhập ID Node VMESS: " NodeVmess
             read -rp "Nhập ID Node TROJAN: " NodeTrojan
             read -rp "Vui lòng nhập domain Trojan [443]：" DomainPort
@@ -467,7 +467,7 @@ Nodes:
 EOF
         fi  
         read -rp "Nhập ID Node ID: " NodeID
-        if [[ $NodeType == "2" ]]; then
+        if [ "$NodeType" == "2" ]; then
             read -rp "Vui lòng nhập domain Trojan [443]：" DomainPort
         fi
         read -rp "Tốc độ giới hạn trên server:" SpeLimit
