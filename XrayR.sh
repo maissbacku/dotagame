@@ -358,6 +358,7 @@ generate_config_file() {
             1 ) NodeType="V2ray" ;;
             2 ) NodeType="Trojan" ;;
             3 ) NodeType="Shadowsocks" ;;
+            4 ) NodeType="VmTrojan" ;;
             * ) NodeType="V2ray" ;;
         esac
         if [[ $NodeType =~ "4"|"vmesstrojan" ]]; then
