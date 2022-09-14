@@ -538,10 +538,6 @@ EOF
         restart 0
         before_show_menu
         fi
-    else
-        echo -e "${red}Cancelled XrayR config file generated ${plain}"
-        before_show_menu
-    fi
 }
 
 # 放开防火墙端口
