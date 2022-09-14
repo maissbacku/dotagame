@@ -465,11 +465,11 @@ Nodes:
           CLOUDFLARE_EMAIL: phanhaine@gmail.com
           CLOUDFLARE_API_KEY: 5d0fdee9b8a3d734928f25b92148a766d5617
 EOF
-        fi  
+        else  
         read -rp "Nhập ID Node ID: " NodeID
-        if [[ $NodeType =~ "2"|"Trojan" ]]; then
-            read -rp "Vui lòng nhập domain Trojan [443]：" DomainPort
-        fi
+            if [[ $NodeType =~ "2"|"Trojan" ]]; then
+                read -rp "Vui lòng nhập domain Trojan [443]：" DomainPort
+            fi
         read -rp "Tốc độ giới hạn trên server:" SpeLimit
         read -rp "Giới hạn số người dùng:" UserLimit
         cd /etc/XrayR
@@ -532,6 +532,7 @@ Nodes:
           CLOUDFLARE_EMAIL: phanhaine@gmail.com
           CLOUDFLARE_API_KEY: 5d0fdee9b8a3d734928f25b92148a766d5617
 EOF
+        fi
         echo -e "${green}XrayR The configuration file is generated，restarting XrayR service ${plain}"
         restart 0
         before_show_menu
