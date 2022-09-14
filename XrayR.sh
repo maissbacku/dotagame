@@ -351,9 +351,6 @@ generate_config_file() {
         echo -e "${green}3. Shadowsocks ${plain}"
         echo -e "${green}4. V2ray + Trojan [80-443] ${plain}"
         read -rp "Vui lòng nhập định dạng Node [1-4，mặc định 1]：" NodeType
-        if [[ $NodeType =~ "2"|"Trojan" ]]; then
-            read -rp "Vui lòng nhập domain Trojan [443]：" DomainPort
-        fi
         case "$NodeType" in
             1 ) NodeType="V2ray" ;;
             2 ) NodeType="Trojan" ;;
@@ -473,6 +470,9 @@ EOF
         before_show_menu
         else
         read -rp "Vui lòng nhập Node ID:" NodeID
+            if [[ $NodeType =~ "2"|"Trojan" ]]; then
+            read -rp "Vui lòng nhập domain Trojan [443]：" DomainPort
+            fi
         read -rp "Tốc độ giới hạn trên server:" SpeLimit
         read -rp "Giới hạn số người dùng:" UserLimit
         cd /etc/XrayR
