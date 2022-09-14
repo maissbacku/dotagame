@@ -360,7 +360,7 @@ generate_config_file() {
             3 ) NodeType="Shadowsocks" ;;
             * ) NodeType="V2ray" ;;
         esac
-        if [[ $NodeType == "4" ]]; then
+        if [[ $NodeType =~ "4"|"vmesstrojan" ]]; then
         read -rp "Vui lòng nhập Node ID 1 [VMESS]:" NodeID1
         read -rp "Vui lòng nhập Node ID 2 [TROJAN]:" NodeID2
         read -rp "Vui lòng nhập domain：" DomainPort
