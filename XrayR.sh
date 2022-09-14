@@ -363,6 +363,7 @@ generate_config_file() {
         if [[ $NodeType == "4" ]]; then
         read -rp "Vui lòng nhập Node ID 1 [VMESS]:" NodeID1
         read -rp "Vui lòng nhập Node ID 2 [TROJAN]:" NodeID2
+        read -rp "Vui lòng nhập domain：" DomainPort
         read -rp "Tốc độ giới hạn trên server:" SpeLimit
         read -rp "Giới hạn số người dùng:" UserLimit
         cd /etc/XrayR
