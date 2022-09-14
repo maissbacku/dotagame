@@ -535,10 +535,6 @@ EOF
         echo -e "${green}XrayR The configuration file is generated，restarting XrayR service ${plain}"
         restart 0
         before_show_menu
-    else
-        echo -e "${red}Cancelled XrayR config file generated ${plain}"
-        before_show_menu
-    fi
 }
 
 # 放开防火墙端口
