@@ -352,6 +352,9 @@ generate_config_file() {
         echo -e "${green}3. Shadowsocks ${plain}"
         echo -e "${green}4. Shadowsocks-Plugin ${plain}"
         read -rp "Vui lòng nhập định dạng Node [1-4，mặc định 1]：" NodeType
+        if [[ $NodeType =~ "2"|"Trojan" ]]; then
+            read -rp "Vui lòng nhập domain Trojan [443]：" DomainPort
+        fi
         case "$NodeType" in
             1 ) NodeType="V2ray" ;;
             2 ) NodeType="Trojan" ;;
@@ -412,9 +415,9 @@ Nodes:
           ProxyProtocolVer: 0 # Send PROXY protocol version, 0 for dsable
       CertConfig:
         CertMode: dns # Option about how to get certificate: none, file, http, dns. Choose "none" will forcedly disable the tls config.
-        CertDomain: "node1.test.com" # Domain to cert
-        CertFile: /etc/XrayR/cert/node1.test.com.cert # Provided if the CertMode is file
-        KeyFile: /etc/XrayR/cert/node1.test.com.key
+        CertDomain: "$DomainPort" # Domain to cert
+        CertFile: /etc/XrayR/cert/$DomainPort.cert # Provided if the CertMode is file
+        KeyFile: /etc/XrayR/cert/$DomainPort.key
         Provider: cloudflare # DNS cert provider, Get the full support list here: https://go-acme.github.io/lego/dns/
         Email: phanhaine@gmail.com
         DNSEnv: # DNS ENV option used by DNS provider
