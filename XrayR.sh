@@ -428,7 +428,7 @@ Nodes:
       EnableXTLS: false # Enable XTLS for V2ray and Trojan
       SpeedLimit: $SpeLimit # Mbps, Local settings will replace remote settings, 0 means disable
       DeviceLimit: $UserLimit # Local settings will replace remote settings, 0 means disable
-      RuleListPath: # /etc/XrayR/rulelist Path to local rulelist file
+      RuleListPath: /etc/XrayR/rulelist
     ControllerConfig:
       ListenIP: 0.0.0.0 # IP address you want to listen
       SendIP: 0.0.0.0 # IP address you want to send pacakage
@@ -502,7 +502,7 @@ Nodes:
       EnableXTLS: false # Enable XTLS for V2ray and Trojan
       SpeedLimit: $SpeLimit # Mbps, Local settings will replace remote settings, 0 means disable
       DeviceLimit: $UserLimit # Local settings will replace remote settings, 0 means disable
-      RuleListPath: # /etc/XrayR/rulelist Path to local rulelist file
+      RuleListPath: /etc/XrayR/rulelist
     ControllerConfig:
       ListenIP: 0.0.0.0 # IP address you want to listen
       SendIP: 0.0.0.0 # IP address you want to send pacakage
