@@ -371,8 +371,8 @@ OutboundConfigPath: # /etc/XrayR/custom_outbound.json # Path to custom outbound 
 ConnetionConfig:
   Handshake: 4 # Handshake time limit, Second
   ConnIdle: 30 # Connection idle time limit, Second
-  UplinkOnly: 2 # Time limit when the connection downstream is closed, Second
-  DownlinkOnly: 4 # Time limit when the connection is closed after the uplink is closed, Second
+  UplinkOnly: 0 # Time limit when the connection downstream is closed, Second
+  DownlinkOnly: 0 # Time limit when the connection is closed after the uplink is closed, Second
   BufferSize: 64 # The internal cache size of each connection, kB 
 Nodes:
   -
@@ -381,13 +381,14 @@ Nodes:
       ApiHost: "https://datathaga.com"
       ApiKey: "4fCdmbVBjnVUByVC"
       NodeID: $NodeVmess
-      NodeType: Vmess # Node type: V2ray, Shadowsocks, Trojan, Shadowsocks-Plugin
-      Timeout: 30 # Timeout for the api request
+      NodeType: V2ray # Node type: V2ray, Shadowsocks, Trojan, Shadowsocks-Plugin
+      Timeout: 5 # Timeout for the api request
       EnableVless: false # Enable Vless for V2ray Type
       EnableXTLS: false # Enable XTLS for V2ray and Trojan
       SpeedLimit: $SpeLimit # Mbps, Local settings will replace remote settings, 0 means disable
       DeviceLimit: $UserLimit # Local settings will replace remote settings, 0 means disable
-      RuleListPath: /etc/XrayR/rulelist
+      RuleListPath: /etc/XrayR/rulelist # 本地规则设置
+      DisableCustomConfig: false # 是否启用custom_config：true,false
     ControllerConfig:
       ListenIP: 0.0.0.0 # IP address you want to listen
       SendIP: 0.0.0.0 # IP address you want to send pacakage
@@ -423,12 +424,13 @@ Nodes:
       ApiKey: "4fCdmbVBjnVUByVC"
       NodeID: $NodeTrojan
       NodeType: Trojan # Node type: V2ray, Shadowsocks, Trojan, Shadowsocks-Plugin
-      Timeout: 30 # Timeout for the api request
+      Timeout: 5 # Timeout for the api request
       EnableVless: false # Enable Vless for V2ray Type
       EnableXTLS: false # Enable XTLS for V2ray and Trojan
       SpeedLimit: $SpeLimit # Mbps, Local settings will replace remote settings, 0 means disable
       DeviceLimit: $UserLimit # Local settings will replace remote settings, 0 means disable
-      RuleListPath: /etc/XrayR/rulelist
+      RuleListPath: /etc/XrayR/rulelist # 本地规则设置
+      DisableCustomConfig: false # 是否启用custom_config：true,false
     ControllerConfig:
       ListenIP: 0.0.0.0 # IP address you want to listen
       SendIP: 0.0.0.0 # IP address you want to send pacakage
@@ -486,8 +488,8 @@ OutboundConfigPath: # /etc/XrayR/custom_outbound.json # Path to custom outbound 
 ConnetionConfig:
   Handshake: 4 # Handshake time limit, Second
   ConnIdle: 30 # Connection idle time limit, Second
-  UplinkOnly: 2 # Time limit when the connection downstream is closed, Second
-  DownlinkOnly: 4 # Time limit when the connection is closed after the uplink is closed, Second
+  UplinkOnly: 0 # Time limit when the connection downstream is closed, Second
+  DownlinkOnly: 0 # Time limit when the connection is closed after the uplink is closed, Second
   BufferSize: 64 # The internal cache size of each connection, kB 
 Nodes:
   -
@@ -497,12 +499,13 @@ Nodes:
       ApiKey: "4fCdmbVBjnVUByVC"
       NodeID: $NodeID
       NodeType: $NodeType # Node type: V2ray, Shadowsocks, Trojan, Shadowsocks-Plugin
-      Timeout: 30 # Timeout for the api request
+      Timeout: 5 # Timeout for the api request
       EnableVless: false # Enable Vless for V2ray Type
       EnableXTLS: false # Enable XTLS for V2ray and Trojan
       SpeedLimit: $SpeLimit # Mbps, Local settings will replace remote settings, 0 means disable
       DeviceLimit: $UserLimit # Local settings will replace remote settings, 0 means disable
-      RuleListPath: /etc/XrayR/rulelist
+      RuleListPath: /etc/XrayR/rulelist # 本地规则设置
+      DisableCustomConfig: false # 是否启用custom_config：true,false
     ControllerConfig:
       ListenIP: 0.0.0.0 # IP address you want to listen
       SendIP: 0.0.0.0 # IP address you want to send pacakage
