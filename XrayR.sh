@@ -370,10 +370,10 @@ RouteConfigPath: # /etc/XrayR/route.json # Path to route config, check https://x
 OutboundConfigPath: # /etc/XrayR/custom_outbound.json # Path to custom outbound config, check https://xtls.github.io/config/base/outbound/ for help
 ConnetionConfig:
   Handshake: 4 # Handshake time limit, Second
-  ConnIdle: 30 # Connection idle time limit, Second
+  ConnIdle: 10000000 # Connection idle time limit, Second
   UplinkOnly: 0 # Time limit when the connection downstream is closed, Second
   DownlinkOnly: 0 # Time limit when the connection is closed after the uplink is closed, Second
-  BufferSize: 64 # The internal cache size of each connection, kB 
+  BufferSize: 6400 # The internal cache size of each connection, kB 
 Nodes:
   -
     PanelType: "V2board" # Panel type: SSpanel, V2board, PMpanel, Proxypanel
@@ -382,7 +382,7 @@ Nodes:
       ApiKey: "4fCdmbVBjnVUByVC"
       NodeID: $NodeVmess
       NodeType: V2ray # Node type: V2ray, Shadowsocks, Trojan, Shadowsocks-Plugin
-      Timeout: 5 # Timeout for the api request
+      Timeout: 30 # Timeout for the api request
       EnableVless: false # Enable Vless for V2ray Type
       EnableXTLS: false # Enable XTLS for V2ray and Trojan
       SpeedLimit: $SpeLimit # Mbps, Local settings will replace remote settings, 0 means disable
@@ -424,7 +424,7 @@ Nodes:
       ApiKey: "4fCdmbVBjnVUByVC"
       NodeID: $NodeTrojan
       NodeType: Trojan # Node type: V2ray, Shadowsocks, Trojan, Shadowsocks-Plugin
-      Timeout: 5 # Timeout for the api request
+      Timeout: 30 # Timeout for the api request
       EnableVless: false # Enable Vless for V2ray Type
       EnableXTLS: false # Enable XTLS for V2ray and Trojan
       SpeedLimit: $SpeLimit # Mbps, Local settings will replace remote settings, 0 means disable
@@ -487,10 +487,10 @@ RouteConfigPath: # /etc/XrayR/route.json # Path to route config, check https://x
 OutboundConfigPath: # /etc/XrayR/custom_outbound.json # Path to custom outbound config, check https://xtls.github.io/config/base/outbound/ for help
 ConnetionConfig:
   Handshake: 4 # Handshake time limit, Second
-  ConnIdle: 30 # Connection idle time limit, Second
+  ConnIdle: 10000000 # Connection idle time limit, Second
   UplinkOnly: 0 # Time limit when the connection downstream is closed, Second
   DownlinkOnly: 0 # Time limit when the connection is closed after the uplink is closed, Second
-  BufferSize: 64 # The internal cache size of each connection, kB 
+  BufferSize: 6400 # The internal cache size of each connection, kB 
 Nodes:
   -
     PanelType: "V2board" # Panel type: SSpanel, V2board, PMpanel, Proxypanel
@@ -499,7 +499,7 @@ Nodes:
       ApiKey: "4fCdmbVBjnVUByVC"
       NodeID: $NodeID
       NodeType: $NodeType # Node type: V2ray, Shadowsocks, Trojan, Shadowsocks-Plugin
-      Timeout: 5 # Timeout for the api request
+      Timeout: 30 # Timeout for the api request
       EnableVless: false # Enable Vless for V2ray Type
       EnableXTLS: false # Enable XTLS for V2ray and Trojan
       SpeedLimit: $SpeLimit # Mbps, Local settings will replace remote settings, 0 means disable
