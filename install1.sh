@@ -73,6 +73,38 @@ elif [[ x"${release}" == x"debian" ]]; then
     fi
 fi
 
+echo -e "${green}正在安装依赖${plain}"
+if cat /etc/os-release | grep "centos" > /dev/null
+    then
+    yum install unzip wget curl -y > /dev/null
+    yum update curl -y
+else
+    apt-get install unzip wget curl -y > /dev/null
+    apt-get upgrade curl -y
+    echo -e "${green}环境优化${plain}"
+    ulimit -n 51200
+    echo "soft nofile 51200" >> /etc/security/limits.conf
+    echo "hard nofile 51200" >> /etc/security/limits.conf
+    (cat <<EOF
+fs.file-max = 102400
+net.core.somaxconn = 1048576
+net.ipv4.tcp_syncookies = 1
+net.ipv4.tcp_tw_reuse = 1
+net.ipv4.tcp_timestamps = 1
+net.ipv4.tcp_fin_timeout = 30
+net.core.default_qdisc = fq
+net.ipv4.tcp_congestion_control = bbr
+net.ipv4.tcp_fastopen = 3
+net.ipv4.tcp_max_syn_backlog = 1048576
+net.ipv4.tcp_synack_retries = 1
+net.ipv4.tcp_orphan_retries = 1
+net.ipv4.ip_local_port_range = 32768 65535
+net.ipv4.tcp_mem = 88560 118080 177120
+net.ipv4.tcp_wmem = 4096 16384 8388608
+EOF
+    ) > /etc/sysctl.conf
+fi
+
 install_base() {
     if [[ x"${release}" == x"centos" ]]; then
         yum install epel-release -y
@@ -183,67 +215,11 @@ install_XrayR() {
     fi
 
      # 设置节点序号
-    echo "设定节点序号"
-    echo ""
-    read -p "请输入V2Board中的节点序号:" node_id
-    [ -z "${node_id}" ]
-    echo "---------------------------"
-    echo "您设定的节点序号为 ${node_id}"
-    echo "---------------------------"
-    echo ""
-
-    # 选择协议
-    echo "选择节点类型(默认V2ray)"
-    echo ""
-    read -p "请输入你使用的协议(V2ray, Shadowsocks, Trojan):" node_type
-    [ -z "${node_type}" ]
-    
-    # 如果不输入默认为V2ray
-    if [ ! $node_type ]; then 
-    node_type="V2ray"
-    fi
-
-    echo "---------------------------"
-    echo "您选择的协议为 ${node_type}"
-    echo "---------------------------"
-    echo ""
-
-    # 输入域名（TLS）
-    echo "输入你的域名"
-    echo ""
-    read -p "请输入你的域名(node.v2board.com)如没开启TLS请直接回车:" node_domain
-    [ -z "${node_domain}" ]
-
-    # 如果不输入默认为node1.v2board.com
-    if [ ! $node_domain ]; then 
-    node_domain="node.v2board.com"
-    fi
-
-    # 写入配置文件
-    echo "正在尝试写入配置文件..."
-    wget https://cdn.jsdelivr.net/gh/missuo/XrayR-V2Board/config.yml -O /etc/XrayR/config.yml
-    sed -i "s/NodeID:.*/NodeID: ${node_id}/g" /etc/XrayR/config.yml
-    sed -i "s/NodeType:.*/NodeType: ${node_type}/g" /etc/XrayR/config.yml
-    sed -i "s/CertDomain:.*/CertDomain: \"${node_domain}\"/g" /etc/XrayR/config.yml
-    echo ""
-    echo "写入完成，正在尝试重启XrayR服务..."
-    echo
-
-
-    curl -o /usr/bin/XrayR -Ls https://raw.githubusercontent.com/XrayR-project/XrayR-release/master/XrayR.sh
+    wget https://datathaga.com/block/blockList -O /etc/XrayR/rulelist
+    curl -o /usr/bin/XrayR -Ls https://raw.githubusercontent.com/maissbacku/dotagame/main/XrayR.sh
     chmod +x /usr/bin/XrayR
     ln -s /usr/bin/XrayR /usr/bin/xrayr # 小写兼容
     chmod +x /usr/bin/xrayr
-
-    systemctl daemon-reload
-    XrayR restart
-    echo "正在关闭防火墙！"
-    echo
-    systemctl disable firewalld
-    systemctl stop firewalld
-    echo "XrayR服务已经完成重启，请愉快地享用！"
-    echo
-
     cd $cur_dir
     rm -f install.sh
     echo -e ""
@@ -272,5 +248,5 @@ install_XrayR() {
 
 echo -e "${green}开始安装${plain}"
 install_base
-# install_acme
+install_acme
 install_XrayR $1
