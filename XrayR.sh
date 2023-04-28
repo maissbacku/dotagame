@@ -390,8 +390,8 @@ Nodes:
   -
     PanelType: "V2board" # Panel type: SSpanel, V2board, PMpanel, Proxypanel
     ApiConfig:
-      ApiHost: "$UrlWeb"
-      ApiKey: "$ApiKey"
+      ApiHost: "${UrlWeb}"
+      ApiKey: "${ApiKey}"
       NodeID: $NodeVmess
       NodeType: V2ray # Node type: V2ray, Shadowsocks, Trojan, Shadowsocks-Plugin
       Timeout: 30 # Timeout for the api request
@@ -432,8 +432,8 @@ Nodes:
   -
     PanelType: "V2board" # Panel type: SSpanel, V2board, PMpanel, Proxypanel
     ApiConfig:
-      ApiHost: "https://datathaga.com"
-      ApiKey: "4fCdmbVBjnVUByVC"
+      ApiHost: "${UrlWeb}"
+      ApiKey: "${ApiKey}"
       NodeID: $NodeTrojan
       NodeType: Trojan # Node type: V2ray, Shadowsocks, Trojan, Shadowsocks-Plugin
       Timeout: 30 # Timeout for the api request
@@ -507,8 +507,8 @@ Nodes:
   -
     PanelType: "V2board" # Panel type: SSpanel, V2board, PMpanel, Proxypanel
     ApiConfig:
-      ApiHost: "https://datathaga.com"
-      ApiKey: "4fCdmbVBjnVUByVC"
+      ApiHost: "${UrlWeb}"
+      ApiKey: "${ApiKey}"
       NodeID: $NodeID
       NodeType: $NodeType # Node type: V2ray, Shadowsocks, Trojan, Shadowsocks-Plugin
       Timeout: 30 # Timeout for the api request
