@@ -345,6 +345,18 @@ show_XrayR_version() {
 }
 
 generate_config_file() {
+       echo "XrayR config made by Pntuanhai"
+       echo && echo -e "Vui long chon Website cua ban:
+       1. Datathaga
+       2. SeaShark"
+       read -r -p "Choose Website: " panelSet
+       if [ "$panelSet" == "1" ]; then
+         UrlWeb="https://datathaga.com" && ApiKey="4fCdmbVBjnVUByVC"
+       fi
+ 
+       if [ "$panelSet" == "2" ]; then
+           UrlWeb="https://seashark.cloud" && ApiKey="4fCdmbVBjnVUByVC"
+       fi
         echo -e "${yellow}Vui lòng chọn một giao thức truyền tải nút, nếu không được liệt kê thì nó không được hỗ trợ：${plain}"
         echo -e "${green}1. V2ray ${plain}"
         echo -e "${green}2. Trojan ${plain}"
@@ -378,8 +390,8 @@ Nodes:
   -
     PanelType: "V2board" # Panel type: SSpanel, V2board, PMpanel, Proxypanel
     ApiConfig:
-      ApiHost: "https://datathaga.com"
-      ApiKey: "4fCdmbVBjnVUByVC"
+      ApiHost: "$UrlWeb"
+      ApiKey: "$ApiKey"
       NodeID: $NodeVmess
       NodeType: V2ray # Node type: V2ray, Shadowsocks, Trojan, Shadowsocks-Plugin
       Timeout: 30 # Timeout for the api request
