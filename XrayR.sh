@@ -422,8 +422,8 @@ Nodes:
       CertConfig:
         CertMode: dns # Option about how to get certificate: none, file, http, dns. Choose "none" will forcedly disable the tls config.
         CertDomain: "$DomainPort" # Domain to cert
-        CertFile: /etc/XrayR/cert/$DomainPort.cert # Provided if the CertMode is file
-        KeyFile: /etc/XrayR/cert/$DomainPort.key
+        CertFile: /etc/XrayR/cert/certificates/$DomainPort.crt # Provided if the CertMode is file
+        KeyFile: /etc/XrayR/cert/certificates/$DomainPort.key
         Provider: cloudflare # DNS cert provider, Get the full support list here: https://go-acme.github.io/lego/dns/
         Email: phanhaine@gmail.com
         DNSEnv: # DNS ENV option used by DNS provider
@@ -464,8 +464,8 @@ Nodes:
       CertConfig:
         CertMode: dns # Option about how to get certificate: none, file, http, dns. Choose "none" will forcedly disable the tls config.
         CertDomain: "$DomainPort" # Domain to cert
-        CertFile: /etc/XrayR/cert/$DomainPort.cert # Provided if the CertMode is file
-        KeyFile: /etc/XrayR/cert/$DomainPort.key
+        CertFile: /etc/XrayR/cert/certificates/$DomainPort.crt # Provided if the CertMode is file
+        KeyFile: /etc/XrayR/cert/certificates/$DomainPort.key
         Provider: cloudflare # DNS cert provider, Get the full support list here: https://go-acme.github.io/lego/dns/
         Email: phanhaine@gmail.com
         DNSEnv: # DNS ENV option used by DNS provider
@@ -539,8 +539,8 @@ Nodes:
       CertConfig:
         CertMode: dns # Option about how to get certificate: none, file, http, dns. Choose "none" will forcedly disable the tls config.
         CertDomain: "$DomainPort" # Domain to cert
-        CertFile: /etc/XrayR/cert/$DomainPort.cert # Provided if the CertMode is file
-        KeyFile: /etc/XrayR/cert/$DomainPort.key
+        CertFile: /etc/XrayR/cert/certificates/$DomainPort.crt # Provided if the CertMode is file
+        KeyFile: /etc/XrayR/cert/certificates/$DomainPort.key
         Provider: cloudflare # DNS cert provider, Get the full support list here: https://go-acme.github.io/lego/dns/
         Email: phanhaine@gmail.com
         DNSEnv: # DNS ENV option used by DNS provider
